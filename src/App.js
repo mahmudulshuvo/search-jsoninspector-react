@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header'
+import SearchFilters from './components/SeachFilters'
+import JsonInspector from './components/JsonInspector'
+import withStyles from '@material-ui/core/styles/withStyles'
 
-function App() {
+const App = ({classes}) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.container}>
+      <Header />
+      <div className={classes.innerContent}>
+        <SearchFilters />
+        <JsonInspector />
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+const styles = (theme) => ({
+  container: {
+    height: '100vh'
+  },
+  innerContent: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'column',
+    height: '95%'
+  },
+})
+
+export default withStyles(styles)(App);
