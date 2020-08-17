@@ -4,13 +4,26 @@ import SearchFilters from './components/SeachFilters'
 import JsonInspector from './components/JsonInspector'
 import withStyles from '@material-ui/core/styles/withStyles'
 
-const App = ({classes}) => {
+const App=({classes}) => {
+  
+  let data = []
+  const getRequest= async ( url) => {
+    console.log('Get request called '+url)
+    data = await fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (json) {
+        console.log(json)
+      })
+  }
+
   return (
     <div className={classes.container}>
       <Header />
       <div className={classes.innerContent}>
-        <SearchFilters />
-        <JsonInspector />
+        <SearchFilters getRequest={getRequest} />
+        <JsonInspector data={data} />
       </div>
     </div>
   )
@@ -22,7 +35,6 @@ const styles = (theme) => ({
   },
   innerContent: {
     display: 'flex',
-    flexWrap: 'wrap',
     flexDirection: 'column',
     height: '95%'
   },

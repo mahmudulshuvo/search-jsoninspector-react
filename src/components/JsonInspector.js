@@ -1,10 +1,13 @@
 import React, { Fragment, useState } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
+import {response} from './response'
+import ReactJson from 'react-json-view'
 
-const JsonInspector = ({ classes }) => {
+
+const JsonInspector=({classes, data}) => {
   return (
     <div className={classes.jsonInspector}>
-      <h1>Json Inspector</h1>
+      <ReactJson src={data} />
     </div>
   )
 }
@@ -12,7 +15,8 @@ const JsonInspector = ({ classes }) => {
 const styles = (theme) => ({
   jsonInspector: {
     height: '75%',
-    backgroundColor: 'green',
+    margin: '20px',
+    backgroundColor: '',
   },
 })
 
